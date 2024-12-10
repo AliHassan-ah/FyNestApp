@@ -27,6 +27,14 @@ import { AppComponent } from "./app.component";
             canActivate: [AppRouteGuard],
           },
           {
+            path: "create-product",
+            loadChildren: () =>
+              import("./products/create-product/create-product.module").then(
+                (m) => m.CreateProductModule
+              ),
+            canActivate: [AppRouteGuard],
+          },
+          {
             path: "about",
             loadChildren: () =>
               import("./about/about.module").then((m) => m.AboutModule),

@@ -10,7 +10,11 @@
             <i class="fa-light fa-download"></i>
             {{ "Export" }}
           </a>
-          <a href="javascript:;" class="btn addProductBtn">
+          <a
+            href="javascript:;"
+            class="btn addProductBtn"
+            (click)="createProduct()"
+          >
             <i class="fa fa-plus"></i>
             {{ "Add Product" }}
           </a>

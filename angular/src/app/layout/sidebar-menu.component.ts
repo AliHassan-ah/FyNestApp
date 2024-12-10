@@ -13,6 +13,7 @@ import { MenuItem } from "@shared/layout/menu-item";
 @Component({
   selector: "sidebar-menu",
   styleUrl: "./sidebar-menu-style.css",
+  standalone: false,
   templateUrl: "./sidebar-menu.component.html",
 })
 export class SidebarMenuComponent extends AppComponentBase implements OnInit {

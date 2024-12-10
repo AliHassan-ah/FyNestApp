@@ -4,14 +4,15 @@ import {
   output,
   EventEmitter,
   ChangeDetectionStrategy,
-  Injector
-} from '@angular/core';
-import { AppComponentBase } from '@shared/app-component-base';
+  Injector,
+} from "@angular/core";
+import { AppComponentBase } from "@shared/app-component-base";
 
 @Component({
-  selector: 'abp-modal-header',
-  templateUrl: './abp-modal-header.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: "abp-modal-header",
+  templateUrl: "./abp-modal-header.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class AbpModalHeaderComponent extends AppComponentBase {
   title = input<string>();

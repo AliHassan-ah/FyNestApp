@@ -1,29 +1,30 @@
-import { Directive, forwardRef, Attribute } from '@angular/core';
-import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
+import { Directive, forwardRef, Attribute } from "@angular/core";
+import { Validator, AbstractControl, NG_VALIDATORS } from "@angular/forms";
 
 @Directive({
   selector:
     // tslint:disable-next-line:directive-selector
-    '[validateEqual][formControlName],[validateEqual][formControl],[validateEqual][ngModel]',
+    "[validateEqual][formControlName],[validateEqual][formControl],[validateEqual][ngModel]",
+  standalone: false,
   providers: [
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => EqualValidator),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class EqualValidator implements Validator {
   constructor(
-    @Attribute('validateEqual') public validateEqual: string,
-    @Attribute('reverse') public reverse: string
+    @Attribute("validateEqual") public validateEqual: string,
+    @Attribute("reverse") public reverse: string
   ) {}
 
   private get isReverse() {
     if (!this.reverse) {
       return false;
     }
-    return this.reverse === 'true' ? true : false;
+    return this.reverse === "true" ? true : false;
   }
 
   validate(control: AbstractControl): { [key: string]: any } {
@@ -36,13 +37,13 @@ export class EqualValidator implements Validator {
     // value not equal
     if (control2 && value !== control2.value && !this.isReverse) {
       return {
-        validateEqual: true
+        validateEqual: true,
       };
     }
 
     // value equal and reverse
     if (control2 && value === control2.value && this.isReverse) {
-      delete control2.errors['validateEqual'];
+      delete control2.errors["validateEqual"];
       if (!Object.keys(control2.errors).length) {
         control2.setErrors(null);
       }

@@ -1,16 +1,17 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'abp-pagination-controls',
-  templateUrl: './abp-pagination-controls.component.html'
+  selector: "abp-pagination-controls",
+  templateUrl: "./abp-pagination-controls.component.html",
+  standalone: false,
 })
 export class AbpPaginationControlsComponent {
   @Input() id: string;
   @Input() maxSize = 7;
-  @Input() previousLabel = 'Previous';
-  @Input() nextLabel = 'Next';
-  @Input() screenReaderPaginationLabel = 'Pagination';
-  @Input() screenReaderPageLabel = 'page';
+  @Input() previousLabel = "Previous";
+  @Input() nextLabel = "Next";
+  @Input() screenReaderPaginationLabel = "Pagination";
+  @Input() screenReaderPageLabel = "page";
   @Input() screenReaderCurrentLabel = `You're on page`;
   @Output() pageChange = new EventEmitter<number>();
 
@@ -22,7 +23,7 @@ export class AbpPaginationControlsComponent {
     return this._directionLinks;
   }
   set directionLinks(value: boolean) {
-    this._directionLinks = !!value && <any>value !== 'false';
+    this._directionLinks = !!value && <any>value !== "false";
   }
 
   @Input()
@@ -30,6 +31,6 @@ export class AbpPaginationControlsComponent {
     return this._autoHide;
   }
   set autoHide(value: boolean) {
-    this._autoHide = !!value && <any>value !== 'false';
+    this._autoHide = !!value && <any>value !== "false";
   }
 }

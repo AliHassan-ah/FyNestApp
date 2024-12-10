@@ -12,6 +12,7 @@ import { LayoutStoreService } from "@shared/layout/layout-store.service";
   selector: "sidebar",
   templateUrl: "./sidebar.component.html",
   styleUrl: "./sidebar.component.css",
+  standalone: false,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

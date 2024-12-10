@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { ProductsComponent } from "./products.component";
 import { ProductsRoutingModule } from "./products-routing.module";
 // import { SharedModule } from "@shared/shared.module";
-// import { CreateProductDialogComponent } from "./create-product/create-product-dialog.component";
 // import { EditProductDialogComponent } from "./edit-product/edit-product-dialog.component";
 import { AvatarModule } from "primeng/avatar";
 import { BadgeModule } from "primeng/badge";
@@ -17,6 +16,7 @@ import { FormsModule } from "@angular/forms";
 import { MultiSelectModule } from "primeng/multiselect";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { CalendarModule } from "primeng/calendar";
+import { SharedModule } from "@shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { CalendarModule } from "primeng/calendar";
     // EditProductDialogComponent,
   ],
   imports: [
-    // SharedModule,
+    SharedModule,
     CommonModule,
     ProductsRoutingModule,
     AvatarModule,
