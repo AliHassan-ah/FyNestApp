@@ -1,0 +1,49 @@
+.mainHeading {
+  color: #313131;
+  font-size: 24px;
+  font-weight: 600;
+}
+.topButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+}
+.addProductBtn {
+  background-color: #eea520;
+  color: white;
+}
+.exportListBtn {
+  background-color: #eea5201a;
+  color: #eea520;
+  font-weight: 600;
+  font-size: 14px;
+}
+.searchSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #9b9b9b1a;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+.filterSearchDateRow {
+  padding: 15px 0;
+}
+.searchInput {
+  border: none;
+}
+::ng-deep .p-selectbutton .p-button.p-highlight {
+  background-color: #eea5201a;
+  color: #eea520;
+}
+::ng-deep .p-button:focus {
+  box-shadow: none;
+}

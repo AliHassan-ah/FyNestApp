@@ -1,0 +1,61 @@
+.login-page {
+  background-color: white !important;
+}
+.loginForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rem;
+  margin: 0;
+}
+.left-part {
+  background-color: #eea520;
+  border-radius: 15px;
+}
+.posterImg {
+  object-fit: cover;
+  width: 390px;
+}
+.imageSection {
+  height: 89vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.welcomePart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+.welcomeText {
+  text-align: center;
+}
+.p-selectbutton .p-button.p-highlight {
+  background: #eea520;
+  border-color: #eea520;
+  color: #ffffff;
+  font-size: 13px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover {
+  background: #eea520;
+  border-color: #d1d5db;
+  color: white;
+  font-size: 13px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.p-selectbutton .p-button:not(.p-disabled):not(.p-highlight) {
+  background: #9b9b9b1a;
+  border-color: #d1d5db;
+  color: #4b5563;
+  font-size: 13px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.p-button:focus {
+  box-shadow: none;
+}

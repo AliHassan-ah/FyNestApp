@@ -1,0 +1,52 @@
+﻿<div class="loginForm row">
+  <div class="login-box col-md-6 left-part">
+    <div class="imageSection">
+      <img src="../assets/auth-images/signup.png" class="posterImg" />
+    </div>
+  </div>
+  <div class="login-box col-md-5">
+    <account-header></account-header>
+    <div class="">
+      <div
+        class="headerLogo"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-bottom: 25px;
+        "
+      >
+        <img
+          src="../../assets/auth-images/SignUpHeaderLogo.svg"
+          alt=""
+          width="140px"
+        />
+      </div>
+      <div class="welcomePart">
+        <div class="welcomeText">Welcome to Fynest</div>
+        <div class="loginSignUpToggle">
+          <p-selectButton
+            [options]="stateOptions"
+            [(ngModel)]="value"
+            optionLabel="label"
+            optionValue="value"
+            (onChange)="onStateChange($event)"
+          />
+        </div>
+      </div>
+      @if (showTenantChange()) {
+      <div class="">
+        <tenant-change></tenant-change>
+      </div>
+      }
+      <div class="card-body login-card-body">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- 
+      <div class="card-footer">
+        <account-languages></account-languages>
+      </div> -->
+    </div>
+    <!-- <account-footer></account-footer> -->
+  </div>
+</div>

@@ -1,0 +1,34 @@
+.inputField {
+  padding: 1.3rem 0.75rem !important;
+  border-radius: 17px;
+}
+.label {
+  font-weight: 400;
+  font-size: 14px;
+  color: #131a3f;
+}
+.socialMediaSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding-top: 5px;
+}
+.socialMediaBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #9b9b9b;
+  border-radius: 5px;
+  padding: 2px 5px;
+  gap: 5px;
+  cursor: pointer;
+}
+.socialMediaIcon {
+  color: #131a3f;
+  font-size: 13px;
+}
+.socialMediaText {
+  color: #131a3f !important;
+  font-size: 13px;
+}
