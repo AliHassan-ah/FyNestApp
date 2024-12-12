@@ -3,12 +3,12 @@
     <div class="header">
       <div class="topHeading">Add Product</div>
       <div class="topBtn">
-        <div class="cancelBtn">
+        <div class="cancelBtn" (click)="goBack()">
           <i class="fa fa-thin fa-xmark"></i>
           Cancel
         </div>
         <div class="addBtn">
-          <i class="fa fa-thin fa-xmark"></i>
+          <i class="fa fa-thin fa-plus"></i>
           Add Product
         </div>
       </div>
@@ -163,6 +163,33 @@
         </div>
       </div>
       <div class="rightPart col-md-3">
+        <p-card class="statusSection">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <div class="mediaHeading">Status</div>
+            <div class="showStatus">
+              <p-tag severity="secondary" value="Draft" />
+            </div>
+          </div>
+          <div class="productStatus inputWithLabel">
+            <label class="col-form-label" for="categoty">
+              {{ "Product Status" | localize }}
+            </label>
+            <p-dropdown
+              optionLabel="productStatus"
+              optionValue="value"
+              placeholder="Select Status"
+              class="fullWidth"
+              required
+              name="productStatus"
+            />
+          </div>
+        </p-card>
         <p-card>
           <div class="mediaHeading">Media</div>
           <label class="col-form-label" for="productImage">
@@ -219,9 +246,52 @@
             ></abp-validation-summary> -->
           </div>
         </p-card>
-        <p-card class="statusSection">
-          <div class="mediaHeading">Status</div>
-          <div class="showStatus"></div>
+        <!-- Thumbnail -->
+        <p-card>
+          <div class="mediaHeading">Thumbnail</div>
+          <div>
+            <div *ngIf="uploadedThumbnail" class="uploadedthumbnail">
+              <img
+                [src]="uploadedThumbnail"
+                class="img-preview"
+                alt="Uploaded Image"
+              />
+              <div class="imageDetails">
+                <span>{{ uploadedFile?.name }}</span>
+                <span>{{ uploadedFile?.size }} KB</span>
+              </div>
+              <button class="removeImageBtn">
+                <i class="fa fa-times" style="font-size: 10px"></i>
+              </button>
+            </div>
+
+            <!-- Add thumbnail section -->
+            <div
+              *ngIf="!uploadedThumbnail"
+              class="uploadImgSection"
+              (dragover)="onDragOver($event)"
+              (dragleave)="onDragLeave($event)"
+              (drop)="onDrop($event)"
+            >
+              <div class="imgIcon">
+                <i class="fa fa-thin fa-image upload-icon imgIcon"></i>
+              </div>
+              <div class="addImgBtn" (click)="triggerThumbnailInput()">
+                Add Image
+              </div>
+            </div>
+
+            <!-- Hidden file input -->
+            <input
+              type="file"
+              class="form-control d-none"
+              name="productImage"
+              id="productThumbnail"
+              accept="image/*"
+              #productImageEl
+              (change)="onThumbnailChange($event)"
+            />
+          </div>
         </p-card>
       </div>
     </div>

@@ -2,8 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ProductsComponent } from "./products.component";
 import { ProductsRoutingModule } from "./products-routing.module";
-// import { SharedModule } from "@shared/shared.module";
-// import { EditProductDialogComponent } from "./edit-product/edit-product-dialog.component";
 import { AvatarModule } from "primeng/avatar";
 import { BadgeModule } from "primeng/badge";
 import { TableModule } from "primeng/table";
@@ -19,11 +17,7 @@ import { CalendarModule } from "primeng/calendar";
 import { SharedModule } from "@shared/shared.module";
 
 @NgModule({
-  declarations: [
-    ProductsComponent,
-    // CreateProductDialogComponent,
-    // EditProductDialogComponent,
-  ],
+  declarations: [ProductsComponent],
   imports: [
     SharedModule,
     CommonModule,

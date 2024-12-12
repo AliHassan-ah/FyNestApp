@@ -50,25 +50,43 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
         "fas fa-home",
         "../../assets/admin-pannel/Dashboard.svg"
       ),
-      new MenuItem(this.l("Products"), "/app/products", "fas fa-boxes", null),
       new MenuItem(
-        this.l("Roles"),
-        "/app/roles",
-        "fas fa-theater-masks",
-        "Pages.Roles"
+        this.l("Orders"),
+        "/app/orders",
+        "fa fa-thin fa-box-open",
+        null
       ),
       new MenuItem(
-        this.l("Tenants"),
-        "/app/tenants",
-        "fas fa-building",
-        "Pages.Tenants"
+        this.l("Products"),
+        "/app/products",
+        "fa fa-thin fa-box",
+        null
       ),
       new MenuItem(
-        this.l("Users"),
-        "/app/users",
-        "fas fa-users",
-        "Pages.Users"
+        this.l("Categories"),
+        "/app/categories",
+        "fa fa-thin fa-list",
+        null
       ),
+
+      // new MenuItem(
+      //   this.l("Roles"),
+      //   "/app/roles",
+      //   "fas fa-theater-masks",
+      //   "Pages.Roles"
+      // ),
+      // new MenuItem(
+      //   this.l("Tenants"),
+      //   "/app/tenants",
+      //   "fas fa-building",
+      //   "Pages.Tenants"
+      // ),
+      // new MenuItem(
+      //   this.l("Users"),
+      //   "/app/users",
+      //   "fas fa-users",
+      //   "Pages.Users"
+      // ),
       //   new MenuItem(this.l("MultiLevelMenu"), "", "fas fa-circle", "", [
       //     new MenuItem("ASP.NET Boilerplate", "", "fas fa-dot-circle", "", [
       //       new MenuItem(

@@ -35,6 +35,36 @@ import { AppComponent } from "./app.component";
             canActivate: [AppRouteGuard],
           },
           {
+            path: "categories",
+            loadChildren: () =>
+              import("./categories/categories.module").then(
+                (m) => m.CategoriesModule
+              ),
+            canActivate: [AppRouteGuard],
+          },
+          {
+            path: "create-category",
+            loadChildren: () =>
+              import(
+                "./categories/create-category/create-category.module"
+              ).then((m) => m.CreateCategoryModule),
+            canActivate: [AppRouteGuard],
+          },
+          {
+            path: "orders",
+            loadChildren: () =>
+              import("./orders/orders.module").then((m) => m.OrdersModule),
+            canActivate: [AppRouteGuard],
+          },
+          {
+            path: "view-order",
+            loadChildren: () =>
+              import("./orders/view-order/view-order.module").then(
+                (m) => m.ViewOrderModule
+              ),
+            canActivate: [AppRouteGuard],
+          },
+          {
             path: "about",
             loadChildren: () =>
               import("./about/about.module").then((m) => m.AboutModule),

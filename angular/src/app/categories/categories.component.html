@@ -1,0 +1,128 @@
+<div>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <h1 class="mainHeading">{{ "Categories" }}</h1>
+        </div>
+        <div class="col-6 text-right topButtons">
+          <a href="javascript:;" class="btn exportListBtn">
+            <i class="fa fa-light fa-download"></i>
+            {{ "Export" }}
+          </a>
+          <a
+            href="javascript:;"
+            class="btn addProductBtn"
+            (click)="createCategory()"
+          >
+            <i class="fa fa-plus"></i>
+            {{ "Add Category" }}
+          </a>
+        </div>
+      </div>
+      <div class="row filterSearchDateRow">
+        <div class="col-md-6 filters"></div>
+        <div class="col-md-6 searchSection">
+          <div class="input-group searchBar">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              class="form-control searchInput"
+              name="keyword"
+              [placeholder]="'Search Category ...'"
+            />
+            <!-- <div class="input-group-prepend">
+                    <button type="button" class="btn bg-blue">
+                      
+                    </button>
+                  </div> -->
+          </div>
+          <div class="calendar">
+            <p-calendar
+              [iconDisplay]="'input'"
+              [showIcon]="true"
+              inputId="icondisplay"
+              [numberOfMonths]="2"
+              selectionMode="range"
+              class="py-1 px-2"
+              placeholder="Select Date..."
+            ></p-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content px-2">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">&emsp;</div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+        <p-table [value]="" [tableStyle]="{ 'min-width': '60rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="productName">
+                Product
+                <p-sortIcon field="productName" />
+              </th>
+              <th>ID</th>
+              <th>Category</th>
+              <th pSortableColumn="productCode">
+                Stock
+                <p-sortIcon field="productCode" />
+              </th>
+              <th>Price</th>
+              <th pSortableColumn="productDescription">
+                Status
+                <p-sortIcon field="productDescription" />
+              </th>
+              <th pSortableColumn="productDescription">
+                Added
+                <p-sortIcon field="productDescription" />
+              </th>
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td>{{ product.productName }}</td>
+              <td>
+                <p-avatar
+                  [image]="product.productImage"
+                  styleClass="mr-2"
+                  size="large"
+                  shape="circle"
+                />
+              </td>
+              <td>{{ product.productCode }}</td>
+              <td>{{ product.productDescription }}</td>
+              <td>
+                <button type="button" class="btn btn-sm bg-secondary">
+                  <i class="fas fa-pencil-alt"></i>
+                  {{ "Edit" }}
+                </button>
+                <button type="button" class="btn btn-sm bg-danger mx-2">
+                  <i class="fas fa-trash"></i>
+                  {{ "Delete" }}
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+              <p-paginator
+                [rowsPerPageOptions]="[5, 10, 20, 30]"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+              />
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </section>
+</div>

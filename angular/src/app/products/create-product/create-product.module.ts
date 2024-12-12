@@ -2,8 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CreateProductComponent } from "./create-product.component";
 import { CreateProductRoutingModule } from "./create-product-routing.module";
-// import { SharedModule } from "@shared/shared.module";
-// import { EditProductDialogComponent } from "./edit-product/edit-product-dialog.component";
 import { AvatarModule } from "primeng/avatar";
 import { BadgeModule } from "primeng/badge";
 import { TableModule } from "primeng/table";

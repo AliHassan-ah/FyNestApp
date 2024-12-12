@@ -1,1 +1,159 @@
-<p>orders works!</p>
+<div>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <h1 class="mainHeading">{{ "Orders" }}</h1>
+        </div>
+        <div class="col-6 text-right topButtons">
+          <a
+            href="javascript:;"
+            class="btn exportListBtn"
+            (click)="viewOrder()"
+          >
+            <i class="fa fa-light fa-download"></i>
+            {{ "Export" }}
+          </a>
+        </div>
+      </div>
+      <div class="row gy-4">
+        <div class="card col-md-3">
+          <div class="cardHead">
+            <div class="status">Processing</div>
+            <div class="icon">
+              <i class="fa fa-thin fa-box-archive" style="color: white"></i>
+            </div>
+          </div>
+          <div class="cardCount">{{ "1201" }}</div>
+          <div class="cardBottom">
+            <div class="percent">{{ "10%" }}</div>
+            <div class="">{{ "+120" }} today</div>
+          </div>
+        </div>
+        <div class="card col-md-3">
+          <div class="cardHead">
+            <div class="status">Shipped</div>
+            <div class="icon" style="background-color: #2bb2fe">
+              <i class="fa fa-thin fa-truck" style="color: white"></i>
+            </div>
+          </div>
+          <div class="cardCount">{{ "1821" }}</div>
+          <div class="cardBottom">
+            <div class="percent">{{ "10%" }}</div>
+            <div class="">{{ "+180" }} today</div>
+          </div>
+        </div>
+        <div class="card col-md-3">
+          <div class="cardHead">
+            <div class="status">Delivered</div>
+            <div class="icon" style="background-color: #87ce6f">
+              <i class="fa fa-thin fa-cart-shopping" style="color: white"></i>
+            </div>
+          </div>
+          <div class="cardCount">{{ "9,102" }}</div>
+          <div class="cardBottom">
+            <div class="percent">{{ "10%" }}</div>
+            <div class="">{{ "+120" }} today</div>
+          </div>
+        </div>
+        <div class="card col-md-3">
+          <div class="cardHead">
+            <div class="status">Canceled</div>
+            <div class="icon" style="background-color: #ed4765">
+              <i
+                class="fa fa-times fa-box-archive"
+                style="
+                  background-color: white;
+                  color: #ed4765;
+                  padding: 2px 4px;
+                  border-radius: 50%;
+                "
+              ></i>
+            </div>
+          </div>
+          <div class="cardCount">{{ "140" }}</div>
+          <div class="cardBottom">
+            <div class="percent">{{ "10%" }}</div>
+            <div class="">{{ "+14" }} today</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content px-2">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">&emsp;</div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+        <p-table [value]="" [tableStyle]="{ 'min-width': '60rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Order ID</th>
+              <th pSortableColumn="productName">
+                Product
+                <p-sortIcon field="productName" />
+              </th>
+
+              <th pSortableColumn="productCode">
+                Date
+                <p-sortIcon field="productCode" />
+              </th>
+              <th>Customer</th>
+
+              <th pSortableColumn="productDescription">
+                Total
+                <p-sortIcon field="productDescription" />
+              </th>
+              <th>Payment</th>
+
+              <th pSortableColumn="productDescription">
+                Status
+                <p-sortIcon field="productDescription" />
+              </th>
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td>{{ product.productName }}</td>
+              <td>
+                <p-avatar
+                  [image]="product.productImage"
+                  styleClass="mr-2"
+                  size="large"
+                  shape="circle"
+                />
+              </td>
+              <td>{{ product.productCode }}</td>
+              <td>{{ product.productDescription }}</td>
+              <td>
+                <button type="button" class="btn btn-sm bg-secondary">
+                  <i class="fas fa-pencil-alt"></i>
+                  {{ "Edit" }}
+                </button>
+                <button type="button" class="btn btn-sm bg-danger mx-2">
+                  <i class="fas fa-trash"></i>
+                  {{ "Delete" }}
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+              <p-paginator
+                [rowsPerPageOptions]="[5, 10, 20, 30]"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+              />
+            </div>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </section>
+</div>
