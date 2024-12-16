@@ -5,8 +5,15 @@ import {
   Output,
   ChangeDetectorRef,
 } from "@angular/core";
+import {
+  CategoryServiceProxy,
+  CategoryDto,
+} from "@shared/service-proxies/service-proxies";
 import { AppComponentBase } from "@shared/app-component-base";
 import { Location } from "@angular/common";
+import { finalize } from "rxjs";
+import { BsModalRef } from "ngx-bootstrap/modal";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-create-product",
@@ -21,16 +28,21 @@ export class CreateCategoryComponent extends AppComponentBase {
     name: string;
     size: number;
   } | null = null;
-
+  category = new CategoryDto();
   selectedFile: File | null = null;
   isDragging = false;
+  categoryName: string | null;
+  categoryDescripion: string | null;
 
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
     private injector: Injector,
     private cd: ChangeDetectorRef,
-    private location: Location
+    private _categoryService: CategoryServiceProxy,
+    private location: Location,
+    public bsModalRef: BsModalRef,
+    private router: Router
   ) {
     super(injector);
   }
@@ -99,10 +111,32 @@ export class CreateCategoryComponent extends AppComponentBase {
   }
 
   save(): void {
+    this.saving = true;
+
+    const category = new CategoryDto();
+    category.init(this.category);
     if (this.uploadedThumbnail) {
-      console.log("Product saved with thumbnail:", this.uploadedThumbnail);
-    } else {
-      console.log("No thumbnail uploaded.");
+      category.categoryThumbnail = this.uploadedThumbnail.url as string;
     }
+
+    this._categoryService
+      .createCategoty(category)
+      .pipe(
+        finalize(() => {
+          this.saving = false;
+          this.cd.detectChanges();
+        })
+      )
+      .subscribe(
+        () => {
+          this.notify.info(this.l("SavedSuccessfully"));
+          this.router.navigate(["/app/categories"]);
+          // this.onSave.emit(null);
+        },
+        () => {
+          this.saving = false;
+          this.cd.detectChanges();
+        }
+      );
   }
 }

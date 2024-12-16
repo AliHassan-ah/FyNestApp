@@ -50,3 +50,51 @@
   padding: 7px 10px !important;
   font-size: 13px !important;
 }
+.productData {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nameDesc {
+  display: flex;
+  flex-direction: column;
+  /* align-items: ; */
+  justify-content: flex-start;
+}
+.productName {
+  color: #313131;
+  font-size: 14px;
+  font-weight: 500;
+}
+.productDescription {
+  color: #9b9b9b;
+  font-weight: 400;
+  font-size: 12px;
+}
+.productId {
+  font-size: 14px;
+  color: #eea520;
+  font-weight: 400;
+}
+.tableDataItem {
+  color: #9b9b9b;
+  font-size: 14px;
+}
+/* ::ng-deep .p-element .p-sortable-column {
+  font-size: 14px;
+  color: #313131;
+  background-color: white !important;
+  font-weight: 500;
+} */
+::ng-deep .p-datatable .p-datatable-thead {
+  font-size: 14px;
+  color: #313131;
+  background-color: white !important;
+  font-weight: 500;
+}
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  font-size: 14px;
+  color: #313131;
+  background-color: white !important;
+  font-weight: 500;
+}

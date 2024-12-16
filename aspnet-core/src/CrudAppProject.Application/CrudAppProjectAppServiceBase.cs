@@ -6,6 +6,8 @@ using Abp.IdentityFramework;
 using Abp.Runtime.Session;
 using CrudAppProject.Authorization.Users;
 using CrudAppProject.MultiTenancy;
+using Abp.Domain.Repositories;
+using CrudAppProject.ProductDetails;
 
 namespace CrudAppProject
 {
@@ -14,6 +16,7 @@ namespace CrudAppProject
     /// </summary>
     public abstract class CrudAppProjectAppServiceBase : ApplicationService
     {
+        private readonly IRepository<ProductDetail, long> _productDetailRepository;
         public TenantManager TenantManager { get; set; }
 
         public UserManager UserManager { get; set; }

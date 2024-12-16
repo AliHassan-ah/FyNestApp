@@ -13,7 +13,7 @@
           <a
             href="javascript:;"
             class="btn addProductBtn"
-            (click)="createCategory()"
+            (click)="createCategoryNavigation()"
           >
             <i class="fa fa-plus"></i>
             {{ "Add Category" }}
@@ -61,52 +61,93 @@
             <div class="col-md-6"></div>
           </div>
         </div>
-        <p-table [value]="" [tableStyle]="{ 'min-width': '60rem' }">
+        <p-table
+          [value]="allCategories"
+          [tableStyle]="{ 'min-width': '60rem' }"
+        >
+          <ng-template pTemplate="caption"> </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="productName">
-                Product
-                <p-sortIcon field="productName" />
+              <th pSortableColumn="categoryName">
+                Category Name
+                <p-sortIcon field="categoryName" />
               </th>
-              <th>ID</th>
-              <th>Category</th>
-              <th pSortableColumn="productCode">
+              <th pSortableColumn="address">
+                Sold
+                <p-sortIcon field="address" />
+              </th>
+
+              <th pSortableColumn="state">
                 Stock
-                <p-sortIcon field="productCode" />
+                <p-sortIcon field="state" />
               </th>
-              <th>Price</th>
-              <th pSortableColumn="productDescription">
-                Status
-                <p-sortIcon field="productDescription" />
-              </th>
-              <th pSortableColumn="productDescription">
+              <th pSortableColumn="state">
                 Added
-                <p-sortIcon field="productDescription" />
+                <p-sortIcon field="state" />
               </th>
+
+              <!-- <th  pSortableColumn="email">Discount
+                          <p-sortIcon field="email"/>
+  
+                        </th> -->
               <th>Actions</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-product>
+          <ng-template pTemplate="body" let-category>
             <tr>
-              <td>{{ product.productName }}</td>
-              <td>
-                <p-avatar
-                  [image]="product.productImage"
-                  styleClass="mr-2"
-                  size="large"
-                  shape="circle"
+              <td class="categoryData">
+                <img
+                  *ngIf="category.categoryThumbnail"
+                  [src]="category.categoryThumbnail"
+                  alt="Category Image"
+                  style="
+                    width: 50px;
+                    height: 50px;
+                    object-fit: cover;
+                    border-radius: 4px;
+                  "
                 />
+                <div style="display: flex; flex-direction: column">
+                  <div style="color: #313131; font-size: 14px">
+                    {{ category.categoryName }}
+                  </div>
+                  <div style="color: #9b9b9b; font-size: 12px">
+                    {{ category.description }}
+                  </div>
+                </div>
               </td>
-              <td>{{ product.productCode }}</td>
-              <td>{{ product.productDescription }}</td>
+              <td>{{ "121" }}</td>
+              <td>{{ "590" }}</td>
+              <td>{{ formatCreationTime(category.creationTime._d) }}</td>
+
               <td>
-                <button type="button" class="btn btn-sm bg-secondary">
-                  <i class="fas fa-pencil-alt"></i>
-                  {{ "Edit" }}
+                <button
+                  type="button"
+                  class="btn btn-sm"
+                  (click)="editCategoryNavigate(category.id)"
+                >
+                  <i class="fa fa-solid fa-pen"></i>
                 </button>
-                <button type="button" class="btn btn-sm bg-danger mx-2">
+                <div
+                  class="btn btn-sm"
+                  tooltipPosition="top"
+                  [pTooltip]="tooltipContent"
+                  (click)="showCategoryDetailPage(category.id)"
+                >
+                  <ng-template #tooltipContent>
+                    <div class="flex align-items-center">
+                      <span style="font-size: 12px">Category details</span>
+                    </div>
+                  </ng-template>
+
+                  <i class="fas fa-eye"></i>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-sm mx-2"
+                  (click)="deleteCategory(category)"
+                >
                   <i class="fas fa-trash"></i>
-                  {{ "Delete" }}
                 </button>
               </td>
             </tr>
@@ -114,11 +155,15 @@
 
           <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-              <p-paginator
+              <!-- <p-paginator
+                [first]="first"
+                [rows]="rows"
+                [totalRecords]="totalRecords"
                 [rowsPerPageOptions]="[5, 10, 20, 30]"
                 [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-              />
+                (onPageChange)="onPageChange($event)"
+              /> -->
             </div>
           </ng-template>
         </p-table>

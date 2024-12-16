@@ -15,6 +15,7 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { SelectButtonModule } from "primeng/selectbutton";
 import { CalendarModule } from "primeng/calendar";
 import { SharedModule } from "@shared/shared.module";
+import { TooltipModule } from "primeng/tooltip";
 
 @NgModule({
   declarations: [ProductsComponent],
@@ -34,6 +35,7 @@ import { SharedModule } from "@shared/shared.module";
     MultiSelectModule,
     SelectButtonModule,
     CalendarModule,
+    TooltipModule,
   ],
 })
 export class ProductsModule {}

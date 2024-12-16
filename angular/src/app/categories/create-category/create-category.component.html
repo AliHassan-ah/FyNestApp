@@ -1,111 +1,124 @@
-<div class="parentDiv">
-  <div class="create-product">
-    <div class="header">
-      <div class="topHeading">Add Category</div>
-      <div class="topBtn">
-        <div class="cancelBtn" (click)="goBack()">
-          <i class="fa fa-thin fa-xmark"></i>
-          Cancel
-        </div>
-        <div class="addBtn">
-          <i class="fa fa-thin fa-plus"></i>
-          Add Category
-        </div>
-      </div>
-    </div>
-    <div class="body row">
-      <div class="rightPart col-md-3">
-        <p-card>
-          <div class="thumbnailHeading">Thumbnail</div>
-          <label class="col-form-label" for="productImage">
-            {{ "Photo" | localize }}
-          </label>
-          <div>
-            <!-- Display the uploaded thumbnail if it exists -->
-            <div *ngIf="uploadedThumbnail" class="thumbnail-preview">
-              <img
-                [src]="uploadedThumbnail.url"
-                class="img-preview"
-                alt="Uploaded Thumbnail"
-              />
-              <div class="imageDetails">
-                <span>{{ uploadedThumbnail.name }}</span>
-                <span>{{ uploadedThumbnail.size }} KB</span>
-              </div>
-              <button class="removeImageBtn" (click)="removeThumbnail()">
-                <i class="fa fa-times" style="font-size: 10px"></i>
-              </button>
-            </div>
-
-            <!-- Thumbnail upload section -->
-            <div
-              *ngIf="!uploadedThumbnail"
-              class="uploadImgSection"
-              (dragover)="onDragOver($event)"
-              (dragleave)="onDragLeave($event)"
-              (drop)="onDrop($event)"
-            >
-              <div class="imgIcon">
-                <i class="fa fa-thin fa-image upload-icon imgIcon"></i>
-              </div>
-              <div class="uploadImgText">
-                Drag and drop image here, or click add image
-              </div>
-              <div class="addImgBtn" (click)="triggerFileInput()">
-                Add Image
-              </div>
-            </div>
-
-            <input
-              type="file"
-              class="form-control d-none"
-              name="productImage"
-              id="categoryImage"
-              accept="image/*"
-              (change)="onFileChange($event)"
-            />
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createProductForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <div class="parentDiv">
+    <div class="create-product">
+      <div class="header">
+        <div class="topHeading">Add Category</div>
+        <div class="topBtn">
+          <div class="cancelBtn" (click)="goBack()">
+            <i class="fa fa-thin fa-xmark"></i>
+            Cancel
           </div>
-        </p-card>
+          <button
+            class="addBtn"
+            type="submit"
+            [disabled]="!createProductForm.form.valid || saving"
+          >
+            <i class="fa fa-thin fa-plus"></i>
+            Add Category
+          </button>
+        </div>
       </div>
-      <div class="leftPart col-md-8">
-        <div class="generalInformation">
+      <div class="body row">
+        <div class="rightPart col-md-3">
           <p-card>
-            <div class="heading">General Information</div>
-            <div class="productName">
-              <label for="productName">Product Name</label>
-              <!-- <input type="text" placeholder="Type Product name here ..." /> -->
-              <input
-                type="text"
-                class="form-control"
-                name="productName"
-                id="productName"
-                required
-                minlength="1"
-                maxlength="32"
-                #SkuEl
-                placeholder="Type Product name here ..."
-              />
-            </div>
+            <div class="thumbnailHeading">Thumbnail</div>
+            <label class="col-form-label" for="productImage">
+              {{ "Photo" | localize }}
+            </label>
+            <div>
+              <!-- Display the uploaded thumbnail if it exists -->
+              <div *ngIf="uploadedThumbnail" class="thumbnail-preview">
+                <img
+                  [src]="uploadedThumbnail.url"
+                  class="img-preview"
+                  alt="Uploaded Thumbnail"
+                />
+                <div class="imageDetails">
+                  <span>{{ uploadedThumbnail.name }}</span>
+                  <span>{{ uploadedThumbnail.size }} KB</span>
+                </div>
+                <button class="removeImageBtn" (click)="removeThumbnail()">
+                  <i class="fa fa-times" style="font-size: 10px"></i>
+                </button>
+              </div>
 
-            <div class="form-group row inputWithLabel">
-              <label class="col-form-label" for="description">
-                {{ " Description" | localize }}
-              </label>
-              <textarea
-                type="text"
-                class="form-control"
-                name="description"
-                id="description"
-                rows="7"
-                placeholder="Type product description here. . ."
+              <!-- Thumbnail upload section -->
+              <div
+                *ngIf="!uploadedThumbnail"
+                class="uploadImgSection"
+                (dragover)="onDragOver($event)"
+                (dragleave)="onDragLeave($event)"
+                (drop)="onDrop($event)"
               >
-              </textarea>
+                <div class="imgIcon">
+                  <i class="fa fa-thin fa-image upload-icon imgIcon"></i>
+                </div>
+                <div class="uploadImgText">
+                  Drag and drop image here, or click add image
+                </div>
+                <div class="addImgBtn" (click)="triggerFileInput()">
+                  Add Image
+                </div>
+              </div>
+
+              <input
+                type="file"
+                class="form-control d-none"
+                name="productImage"
+                id="categoryImage"
+                accept="image/*"
+                (change)="onFileChange($event)"
+                [(ngModel)]="category.categoryThumbnail"
+              />
             </div>
           </p-card>
         </div>
+        <div class="leftPart col-md-8">
+          <div class="generalInformation">
+            <p-card>
+              <div class="heading">General Information</div>
+              <div class="productName">
+                <label for="productName">Category Name</label>
+                <!-- <input type="text" placeholder="Type Product name here ..." /> -->
+                <input
+                  type="text"
+                  class="form-control"
+                  name="productName"
+                  id="productName"
+                  required
+                  minlength="1"
+                  maxlength="32"
+                  [(ngModel)]="category.categoryName"
+                  #SkuEl
+                  placeholder="Type Category name here ..."
+                />
+              </div>
+
+              <div class="form-group row inputWithLabel">
+                <label class="col-form-label" for="description">
+                  {{ " Description" | localize }}
+                </label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  name="description"
+                  id="description"
+                  rows="7"
+                  placeholder="Type product description here. . ."
+                  [(ngModel)]="category.description"
+                >
+                </textarea>
+              </div>
+            </p-card>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- <form
+      <!-- <form
         class="form-horizontal"
         autocomplete="off"
         #createProductForm="ngForm"
@@ -155,5 +168,6 @@
         </button>
         <button type="button" class="btn btn-secondary">Cancel</button>
       </form> -->
+    </div>
   </div>
-</div>
+</form>

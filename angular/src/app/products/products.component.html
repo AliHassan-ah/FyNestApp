@@ -7,7 +7,7 @@
         </div>
         <div class="col-6 text-right topButtons">
           <a href="javascript:;" class="btn exportListBtn">
-            <i class="fa-light fa-download"></i>
+            <i class="fa fa-light fa-download"></i>
             {{ "Export" }}
           </a>
           <a
@@ -38,6 +38,8 @@
               class="form-control searchInput"
               name="keyword"
               [placeholder]="'Search Products ...'"
+              [(ngModel)]="searchKeyword"
+              (keyup.enter)="searchProducts()"
             />
             <!-- <div class="input-group-prepend">
                   <button type="button" class="btn bg-blue">
@@ -63,13 +65,16 @@
   <section class="content px-2">
     <div class="container-fluid">
       <div class="card">
-        <div class="card-header">
+        <!-- <div class="card-header">
           <div class="row">
             <div class="col-md-6">&emsp;</div>
             <div class="col-md-6"></div>
           </div>
-        </div>
-        <p-table [value]="" [tableStyle]="{ 'min-width': '60rem' }">
+        </div> -->
+        <p-table
+          [value]="productsWithDetails"
+          [tableStyle]="{ 'min-width': '60rem' }"
+        >
           <ng-template pTemplate="header">
             <tr>
               <th pSortableColumn="productName">
@@ -96,25 +101,52 @@
           </ng-template>
           <ng-template pTemplate="body" let-product>
             <tr>
-              <td>{{ product.productName }}</td>
-              <td>
-                <p-avatar
-                  [image]="product.productImage"
-                  styleClass="mr-2"
-                  size="large"
-                  shape="circle"
-                />
+              <td class="productData">
+                <div class="nameDesc">
+                  <div class="productName">
+                    {{ product.productDescription }}
+                  </div>
+                  <div class="productDescription">
+                    {{ product.productName }}
+                  </div>
+                </div>
+
+                <div class="thumbnail">
+                  <p-avatar
+                    [image]="product.productThumbnail"
+                    styleClass="mr-2"
+                    size="large"
+                    shape="circle"
+                  />
+                </div>
               </td>
-              <td>{{ product.productCode }}</td>
-              <td>{{ product.productDescription }}</td>
+              <td class="productId">{{ product.id }}</td>
+              <td class="tableDataItem">{{ product.categoryName }}</td>
+              <td class="tableDataItem">{{ product.quantity }}</td>
+              <td class="tableDataItem">{{ product.price }}</td>
+              <td class="tableDataItem">{{ product.status }}</td>
+              <td class="tableDataItem">
+                {{ formatCreationTime(product.creationTime._d) }}
+              </td>
               <td>
-                <button type="button" class="btn btn-sm bg-secondary">
-                  <i class="fas fa-pencil-alt"></i>
-                  {{ "Edit" }}
+                <button type="button" class="btn btn-sm">
+                  <i class="fa fa-solid fa-pen"></i>
                 </button>
-                <button type="button" class="btn btn-sm bg-danger mx-2">
+                <div
+                  class="btn btn-sm"
+                  tooltipPosition="top"
+                  [pTooltip]="tooltipContent"
+                >
+                  <ng-template #tooltipContent>
+                    <div class="flex align-items-center">
+                      <span style="font-size: 12px">Product Details</span>
+                    </div>
+                  </ng-template>
+
+                  <i class="fas fa-eye"></i>
+                </div>
+                <button type="button" class="btn btn-sm mx-2">
                   <i class="fas fa-trash"></i>
-                  {{ "Delete" }}
                 </button>
               </td>
             </tr>

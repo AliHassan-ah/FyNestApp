@@ -51,6 +51,22 @@ import { AppComponent } from "./app.component";
             canActivate: [AppRouteGuard],
           },
           {
+            path: "edit-category",
+            loadChildren: () =>
+              import("./categories/edit-category/edit-category.module").then(
+                (m) => m.EditCategoryModule
+              ),
+            canActivate: [AppRouteGuard],
+          },
+          {
+            path: "view-category",
+            loadChildren: () =>
+              import("./categories/view-category/view-category.module").then(
+                (m) => m.ViewCategoryModule
+              ),
+            canActivate: [AppRouteGuard],
+          },
+          {
             path: "orders",
             loadChildren: () =>
               import("./orders/orders.module").then((m) => m.OrdersModule),
