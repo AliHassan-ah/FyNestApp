@@ -67,7 +67,7 @@ namespace CrudAppProject.Products
         {
             var query = _productRepository.GetAllIncluding(p => p.Images, p => p.ProductDetails)
                                   .Where(p => p.TenantId == (int)AbpSession.TenantId);
-            if (!string.IsNullOrWhiteSpace(input.Sorting))
+            if (!string.IsNullOrWhiteSpace(input.Keyword))
             {
                 query = query.Where(product =>
                 product.ProductName.Contains(input.Keyword) ||
@@ -95,21 +95,34 @@ namespace CrudAppProject.Products
         }
         public async Task DeleteProductWithDetails (long productId)
         {
-            var product = await _productRepository.GetAllIncluding(product=>product.Images,product=>product.ProductDetails)
-                .Where(p=>p.Id==productId && p.TenantId== (int) AbpSession.TenantId)
-                .FirstOrDefaultAsync();
-            if (product == null)
+            using (var unitOfWork = UnitOfWorkManager.Begin())
             {
-                throw new UserFriendlyException("Product not found");
-            }
-            if (product.Images != null && product.Images.Any()) {
-                foreach (var image in product.Images) { 
-                
-                    await _imageRepository.DeleteAsync(image);  
+                var product = await _productRepository.GetAllIncluding(product => product.Images, product => product.ProductDetails)
+                   .Where(p => p.Id == productId && p.TenantId == (int)AbpSession.TenantId)
+                   .FirstOrDefaultAsync();
+                if (product == null)
+                {
+                    throw new UserFriendlyException("Product not found");
                 }
+                if (product.Images != null && product.Images.Any())
+                {
+                    foreach (var image in product.Images)
+                    {
 
+                        await _imageRepository.DeleteAsync(image);
+                    }
+
+                }   
+                if(product.ProductDescription !=null && product.ProductDetails.Any())
+                {
+                    foreach (var detail in product.ProductDetails)
+                    {
+                        await _productDetailRepository.DeleteAsync(detail);
+                    }
+                }
+                await _productRepository.DeleteAsync(product);
+                await unitOfWork.CompleteAsync();
             }
-
         }
 
         public async Task<ProductWithDetailDto> UpdateProductAsync(ProductWithDetailDto input)
@@ -125,6 +138,7 @@ namespace CrudAppProject.Products
 
             product.ProductName = input.ProductName;
             product.ProductDescription = input.ProductDescription;
+            product.ProductThumbnail = input.ProductThumbnail;
 
             if (input.Images != null && input.Images.Any())
             {
