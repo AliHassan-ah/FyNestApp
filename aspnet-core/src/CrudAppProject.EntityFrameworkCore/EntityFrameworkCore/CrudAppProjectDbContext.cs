@@ -7,6 +7,8 @@ using CrudAppProject.Categories;
 using CrudAppProject.Images;
 using CrudAppProject.ProductDetails;
 using CrudAppProject.Products;
+using CrudAppProject.Orders;
+using CrudAppProject.OrderDetails;
 
 namespace CrudAppProject.EntityFrameworkCore
 {
@@ -17,6 +19,10 @@ namespace CrudAppProject.EntityFrameworkCore
         public DbSet<Product> Products { get; set; }
         public DbSet<Image> Images {  get; set; }
         public DbSet<ProductDetail> ProductDetails { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
 
 
