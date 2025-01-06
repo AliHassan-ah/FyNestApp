@@ -7,6 +7,7 @@ using Abp.EntityFrameworkCore.Uow;
 using Abp.MultiTenancy;
 using CrudAppProject.EntityFrameworkCore.Seed.Host;
 using CrudAppProject.EntityFrameworkCore.Seed.Tenants;
+using CrudAppProject.EntityFrameworkCore.Seed.Email;
 
 namespace CrudAppProject.EntityFrameworkCore.Seed
 {
@@ -27,6 +28,7 @@ namespace CrudAppProject.EntityFrameworkCore.Seed
             // Default tenant seed (in host database).
             new DefaultTenantBuilder(context).Create();
             new TenantRoleAndUserBuilder(context, 1).Create();
+
         }
 
         private static void WithDbContext<TDbContext>(IIocResolver iocResolver, Action<TDbContext> contextAction)

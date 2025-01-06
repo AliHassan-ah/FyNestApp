@@ -68,7 +68,7 @@ namespace CrudAppProject.Web.Host.Startup
             {
                 // Cookie value does not matches to queqrystring value
                 return Task.CompletedTask;
-            }
+            }   
 
             // Set auth token from cookie
             context.Token = SimpleStringCipher.Instance.Decrypt(qsAuthToken);

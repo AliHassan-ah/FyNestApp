@@ -17,6 +17,7 @@ using Abp.AspNetCore.SignalR.Hubs;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
+using Hangfire;
 
 namespace CrudAppProject.Web.Host.Startup
 {
@@ -79,6 +80,11 @@ namespace CrudAppProject.Web.Host.Startup
                     )
                 )
             );
+            services.AddHangfire(configuration =>
+            {
+                configuration.UseSqlServerStorage(_appConfiguration["ConnectionStrings:Default"]);
+            });
+            services.AddHangfireServer();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)

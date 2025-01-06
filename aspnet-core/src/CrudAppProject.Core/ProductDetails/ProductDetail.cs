@@ -27,6 +27,7 @@ namespace CrudAppProject.ProductDetails
         [ForeignKey("ProductId")]
         public long ProductId {  get; set; }
         public virtual Product Product { get; set; }
+        public int? Rating { get; set; }
     }
     public enum ProductStatus
     {

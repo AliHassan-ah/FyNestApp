@@ -23,6 +23,8 @@ namespace CrudAppProject.Products.Dto
         public ProductStatus Status { get; set; }
         public long Quantity { get; set; }
         public string? BarCode { get; set; }
+
+        public int ? Rating { get; set; }
         public string Price { get; set; }
         public long CategoryId { get; set; }
 

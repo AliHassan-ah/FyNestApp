@@ -16,8 +16,18 @@ namespace CrudAppProject.Orders
         public string PhoneNumber { get; set; }
         public string ShippingAddress { get; set; }
         public string Email { get; set; }
+        public OrderStatus ? Status { get; set; }
+
 
         public ICollection<OrderDetail> OrderDetail { get; set; }
+
+    }
+    public enum OrderStatus
+    {
+        Processing = 1,
+        Shipped = 2,
+        Delivered = 3,
+        Cancelled = 5,
 
     }
 }

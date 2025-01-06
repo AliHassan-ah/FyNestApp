@@ -13,7 +13,6 @@ namespace CrudAppProject.Orders.Dto
         {
             CreateMap<Order, OrderDto>();
             CreateMap<OrderDto, Order>();
-           
 
         }
     }

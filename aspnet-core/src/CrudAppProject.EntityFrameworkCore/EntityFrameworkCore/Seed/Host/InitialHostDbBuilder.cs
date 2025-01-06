@@ -1,4 +1,6 @@
-﻿namespace CrudAppProject.EntityFrameworkCore.Seed.Host
+﻿using CrudAppProject.EntityFrameworkCore.Seed.Email;
+
+namespace CrudAppProject.EntityFrameworkCore.Seed.Host
 {
     public class InitialHostDbBuilder
     {
@@ -15,6 +17,8 @@
             new DefaultLanguagesCreator(_context).Create();
             new HostRoleAndUserCreator(_context).Create();
             new DefaultSettingsCreator(_context).Create();
+            new EmailTemplateBuilder(_context, 1).Create();
+
 
             _context.SaveChanges();
         }

@@ -9,6 +9,8 @@ using CrudAppProject.ProductDetails;
 using CrudAppProject.Products;
 using CrudAppProject.Orders;
 using CrudAppProject.OrderDetails;
+using CrudAppProject.EmailSender.EmailSenderEntities;
+using CrudAppProject.ProductReviews;
 
 namespace CrudAppProject.EntityFrameworkCore
 {
@@ -23,6 +25,12 @@ namespace CrudAppProject.EntityFrameworkCore
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<EmailTemplate> EmailTemplates { get; set; }
+        public DbSet<QueuedEmail> QueuedEmails { get; set; }
+        public DbSet<ProductReview> ProductReviews { get; set; }
+
+
+
 
 
 

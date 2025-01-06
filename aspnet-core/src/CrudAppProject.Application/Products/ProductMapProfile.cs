@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CrudAppProject.ProductDetails;
+using CrudAppProject.ProductReviews;
 using CrudAppProject.Products.Dto;
 using System;
 using System.Collections.Generic;
@@ -20,9 +22,19 @@ namespace CrudAppProject.Products
                           .ForMember(dest => dest.BarCode, opt => opt.MapFrom(src => src.ProductDetails.FirstOrDefault().BarCode))
                           .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.ProductDetails.FirstOrDefault().Price))
                           .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.ProductDetails.FirstOrDefault().CategoryId))
-                        .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => img.ImageUrl).ToList()));
+                          .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(img => img.ImageUrl).ToList()))
+                          .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.ProductDetails.FirstOrDefault().Rating));
+
+
+
 
             CreateMap<ProductWithDetailDto, Product>();
+            CreateMap<ProductWithDetailDto, ProductDetail>();
+            CreateMap<ProductDetail, ProductWithDetailDto>();
+            CreateMap<ProductReview, ProductReviewsDto>();
+            CreateMap<ProductReviewsDto, ProductReview>();
+
+
         }
     }
 }

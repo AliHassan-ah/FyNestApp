@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.Castle.Log4Net" Version="9.4.1" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.8.17" />
+    <PackageReference Include="Hangfire.Core" Version="1.8.17" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.17" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CrudAppProject.Core\CrudAppProject.Core.csproj" />
